@@ -1,0 +1,15 @@
+  <h1><%= @task[:title] %></h1>
+  <p><%= @task[:details] %></p>
+
+  <%= form_for @task do |f| %>
+  <%= f.check_box :completed, disabled: true %>
+  <%= f.label :completed %>
+  <% end %>
+
+  <%= link_to '< Back to all tasks', tasks_path %>
+  <%= link_to 'Edit', edit_task_path %>
+  <%= link_to(
+    'X',
+    task_path(@task),
+    data: { turbo_method: :delete, turbo_confirm: "Are you sure"}
+    ) %>

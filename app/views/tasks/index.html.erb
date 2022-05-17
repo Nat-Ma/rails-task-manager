@@ -1,0 +1,19 @@
+  <h1>All Tasks</h1>
+
+  <fieldset>
+    <% @tasks.each do |task| %>
+      <div>
+        <input type="checkbox" id="<% task.title %>" name="scales" <%= 'checked' if task.completed %> disabled>
+        <label for="<% task.title %>"><%= link_to "#{task.title}", task_path(task) %></label>
+        <span>
+          <%= link_to(
+            'X',
+            task_path(task),
+            data: { turbo_method: :delete, turbo_confirm: "Are you sure"}
+            ) %>
+        </span>
+      </div>
+    <% end %>
+  </fieldset>
+
+  <%= link_to '+ Add a task', new_path %>
